@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="16dp" android:layoutDirection="rtl">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="ارسال پیامک از سیم‌کارت" android:textStyle="bold" android:textSize="18sp" />
+        <TextView android:id="@+id/info" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingBottom="8dp" />
+        <CheckBox android:id="@+id/onlyOverdue" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="فقط موعد گذشته‌ها" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="قالب" />
+        <Spinner android:id="@+id/template" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        <EditText android:id="@+id/body" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:minLines="5" android:gravity="top|right" android:hint="{name} {pet}" />
+        <EditText android:id="@+id/delay" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:inputType="number" android:text="4" android:hint="فاصله ثانیه" />
+        <Button android:id="@+id/btnSend" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="شروع ارسال" />
+        <Button android:id="@+id/btnStop" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="توقف" />
+    </LinearLayout>
+</ScrollView>

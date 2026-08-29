@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText android:id="@+id/name" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="نام صاحب" />
+        <EditText android:id="@+id/phone" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="موبایل" android:inputType="phone" />
+        <EditText android:id="@+id/pet" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="نام پت" />
+        <EditText android:id="@+id/type" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="نوع (سگ/گربه/خرگوش)" android:text="سگ" />
+        <EditText android:id="@+id/next" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="نوبت بعدی (مثلا 2026-09-20)" />
+        <EditText android:id="@+id/cycle" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="بازه روز" android:inputType="number" android:text="30" />
+        <EditText android:id="@+id/temp" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="خلق‌وخو / هشدار" />
+        <EditText android:id="@+id/debt" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="بدهی" android:inputType="number" android:text="0" />
+        <EditText android:id="@+id/notes" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="یادداشت" android:minLines="2" />
+        <CheckBox android:id="@+id/muted" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="پیامک برای این شماره نرود" />
+
+        <Button android:id="@+id/save" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ذخیره" />
+        <Button android:id="@+id/done" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="کار تمام شد (نوبت بعد جلو برود)" />
+        <Button android:id="@+id/delete" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="حذف" />
+    </LinearLayout>
+</ScrollView>
