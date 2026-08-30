@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/pg_bg"
+    android:fillViewport="true" android:layoutDirection="rtl">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="تنظیمات" android:textColor="@color/pg_text" android:textSize="27sp" android:textStyle="bold"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="پت‌گروم را مطابق کار خودت تنظیم کن." android:textColor="@color/pg_muted" android:textSize="14sp" android:layout_marginTop="3dp" android:layout_marginBottom="18dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="🏪 مشخصات سالن" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/pg_text"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp" android:layout_marginTop="8dp" android:background="@drawable/bg_card">
+            <EditText android:id="@+id/salonName" android:layout_width="match_parent" android:layout_height="52dp" android:hint="نام سالن" android:singleLine="true"/>
+            <EditText android:id="@+id/salonPhone" android:layout_width="match_parent" android:layout_height="52dp" android:hint="شماره تماس سالن" android:inputType="phone" android:singleLine="true"/>
+            <EditText android:id="@+id/signature" android:layout_width="match_parent" android:layout_height="52dp" android:hint="امضای آخر پیامک" android:singleLine="true"/>
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="📱 تنظیمات پیامک" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/pg_text" android:layout_marginTop="22dp"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp" android:layout_marginTop="8dp" android:background="@drawable/bg_card">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="پیام پایه و قالب‌ها را خودت بنویس. برای اسم‌ها از {name} و برای اسم پت از {pet} استفاده کن." android:textColor="@color/pg_muted" android:textSize="13sp"/>
+            <Spinner android:id="@+id/templateSpinner" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="8dp"/>
+            <EditText android:id="@+id/templateName" android:layout_width="match_parent" android:layout_height="52dp" android:hint="نام قالب؛ مثال: پیام پایه" android:singleLine="true"/>
+            <EditText android:id="@+id/templateBody" android:layout_width="match_parent" android:layout_height="150dp" android:gravity="top|right" android:hint="متن پیام..." android:inputType="textMultiLine" android:background="@drawable/bg_search" android:padding="13dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp">
+                <Button android:id="@+id/newTemplate" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:text="قالب جدید"/>
+                <Button android:id="@+id/saveTemplate" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:text="ذخیره قالب"/>
+            </LinearLayout>
+            <Button android:id="@+id/deleteTemplate" android:layout_width="match_parent" android:layout_height="46dp" android:text="حذف قالب انتخاب‌شده" android:textColor="@color/pg_danger"/>
+            <EditText android:id="@+id/defaultDelay" android:layout_width="match_parent" android:layout_height="52dp" android:hint="فاصله بین پیام‌ها به ثانیه" android:inputType="number" android:singleLine="true"/>
+        </LinearLayout>
+
+        <Button android:id="@+id/saveSettings" android:layout_width="match_parent" android:layout_height="55dp" android:layout_marginTop="12dp" android:background="@drawable/bg_primary" android:text="ذخیره تنظیمات" android:textColor="@android:color/white" android:textSize="15sp"/>
+        <Button android:id="@+id/openGuide" android:layout_width="match_parent" android:layout_height="55dp" android:layout_marginTop="9dp" android:text="📖 آموزش خیلی ساده پت‌گروم" android:textSize="14sp"/>
+        <Button android:id="@+id/resetSettings" android:layout_width="match_parent" android:layout_height="48dp" android:text="برگرداندن تنظیمات پیش‌فرض" android:textColor="@color/pg_muted"/>
+    </LinearLayout>
+</ScrollView>

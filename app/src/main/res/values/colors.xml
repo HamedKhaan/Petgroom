@@ -1,0 +1,13 @@
+<resources>
+    <color name="pg_primary">#6C4CF1</color>
+    <color name="pg_primary_dark">#5133C8</color>
+    <color name="pg_accent">#12B886</color>
+    <color name="pg_bg">#F7F7FB</color>
+    <color name="pg_card">#FFFFFF</color>
+    <color name="pg_text">#20212A</color>
+    <color name="pg_muted">#737582</color>
+    <color name="pg_danger">#E05252</color>
+    <color name="pg_warning_bg">#FFF3E8</color>
+    <color name="pg_warning_text">#B85C00</color>
+    <color name="pg_border">#E8E8EF</color>
+</resources>

@@ -1,29 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:padding="20dp"
-    android:layoutDirection="rtl">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="پت‌گروم سالن" android:textSize="22sp" android:textStyle="bold" />
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/pg_bg" android:fillViewport="true" android:layoutDirection="rtl">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="20dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/salonTitle" android:text="پت‌گروم" android:textColor="@color/pg_text" android:textSize="28sp" android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="مدیریت هوشمند سالن و مشتری‌ها" android:textColor="@color/pg_muted" android:textSize="14sp" android:layout_marginTop="3dp"/>
+            </LinearLayout>
+            <TextView android:layout_width="54dp" android:layout_height="54dp" android:gravity="center" android:text="🐾" android:textSize="27sp" android:background="@drawable/bg_soft"/>
+        </LinearLayout>
+
         <TextView android:id="@+id/status" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:paddingTop="8dp" android:paddingBottom="16dp"
-            android:text="کاملاً آفلاین — بدون اینترنت" android:textSize="14sp" />
-        <Button android:id="@+id/btnClients" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="مشتریان (دستی / ویرایش)" />
-        <Button android:id="@+id/btnContacts" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="ورود از مخاطبین گوشی" />
-        <Button android:id="@+id/btnOverdue" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="موعد گذشته" />
-        <Button android:id="@+id/btnSend" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="ارسال پیامک از سیم‌کارت" />
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:paddingTop="20dp" android:textSize="13sp"
-            android:text="داده فقط روی همین گوشی است. پیامک با آنتن موبایل می‌رود؛ اینترنت لازم نیست." />
+            android:layout_marginTop="18dp" android:padding="14dp" android:background="@drawable/bg_card"
+            android:textColor="@color/pg_text" android:textSize="13sp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="14dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="96dp" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card">
+                <TextView android:id="@+id/countClients" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="۰" android:textSize="27sp" android:textStyle="bold" android:textColor="@color/pg_primary"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="مشتری فعال" android:textColor="@color/pg_muted"/>
+            </LinearLayout>
+            <Space android:layout_width="10dp" android:layout_height="1dp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="96dp" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card">
+                <TextView android:id="@+id/countOverdue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="۰" android:textSize="27sp" android:textStyle="bold" android:textColor="@color/pg_danger"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="نیازمند پیگیری" android:textColor="@color/pg_muted"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="دسترسی سریع" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/pg_text" android:layout_marginTop="24dp" android:layout_marginBottom="10dp"/>
+
+        <Button android:id="@+id/btnClients" android:layout_width="match_parent" android:layout_height="56dp" android:text="👥   مدیریت مشتریان" android:textSize="15sp" android:background="@drawable/bg_primary" android:textColor="@android:color/white"/>
+        <Button android:id="@+id/btnContacts" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="9dp" android:text="📇   ورود از مخاطبین گوشی" android:textSize="14sp"/>
+        <Button android:id="@+id/btnOverdue" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="9dp" android:text="⚠️   موعدهای گذشته" android:textSize="14sp"/>
+        <Button android:id="@+id/btnSend" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="9dp" android:text="💬   ارسال پیامک" android:textSize="14sp"/>
+
+        <Button android:id="@+id/btnSettings" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="9dp" android:text="⚙️   تنظیمات و شخصی‌سازی" android:textSize="14sp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp"
+            android:padding="13dp" android:background="@drawable/bg_soft" android:text="🔒 اطلاعات مشتری‌ها فقط روی همین گوشی ذخیره می‌شود و ارسال پیامک به اینترنت نیاز ندارد." android:textColor="@color/pg_text" android:textSize="12sp"/>
     </LinearLayout>
 </ScrollView>

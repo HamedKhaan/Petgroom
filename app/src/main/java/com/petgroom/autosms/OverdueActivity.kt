@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,34 +16,31 @@ import java.util.Locale
 class OverdueActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_clients)
-        findViewById<Button>(R.id.btnAdd).visibility = View.GONE
+        setContentView(R.layout.activity_overdue)
         val db = DbHelper(this)
         val today = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
         val rows = db.overdue(today)
-        findViewById<TextView>(R.id.hint).text = "${rows.size} موعد گذشته"
+        findViewById<TextView>(R.id.hint).text = "${rows.size} مشتری نیازمند پیگیری"
+        findViewById<TextView>(R.id.empty).visibility = if (rows.isEmpty()) View.VISIBLE else View.GONE
         findViewById<RecyclerView>(R.id.list).apply {
             layoutManager = LinearLayoutManager(this@OverdueActivity)
-            adapter = object : RecyclerView.Adapter<VH>() {
-                override fun onCreateViewHolder(p: ViewGroup, v: Int): VH {
-                    val view = LayoutInflater.from(p.context).inflate(R.layout.item_contact, p, false)
-                    view.findViewById<View>(R.id.box).visibility = View.GONE
-                    return VH(view)
-                }
-                override fun getItemCount() = rows.size
-                override fun onBindViewHolder(h: VH, i: Int) {
-                    val c = rows[i]
-                    h.t.text = "${c.ownerName} — ${c.petName}"
-                    h.s.text = "${c.nextVisit} · ${c.phone}"
-                    h.itemView.setOnClickListener {
-                        startActivity(Intent(this@OverdueActivity, ClientEditActivity::class.java).putExtra("id", c.id))
-                    }
-                }
-            }
+            adapter = Adapter(rows) { id -> startActivity(Intent(this@OverdueActivity, ClientEditActivity::class.java).putExtra("id", id)) }
         }
     }
-    class VH(v: View) : RecyclerView.ViewHolder(v) {
-        val t: TextView = v.findViewById(R.id.title)
-        val s: TextView = v.findViewById(R.id.sub)
+
+    class Adapter(private val data: List<DbHelper.Client>, private val onClick: (Long) -> Unit) : RecyclerView.Adapter<Adapter.VH>() {
+        class VH(v: View) : RecyclerView.ViewHolder(v) {
+            val title: TextView = v.findViewById(R.id.title)
+            val sub: TextView = v.findViewById(R.id.sub)
+        }
+        override fun onCreateViewHolder(p: ViewGroup, type: Int): VH =
+            VH(LayoutInflater.from(p.context).inflate(R.layout.item_overdue, p, false))
+        override fun getItemCount() = data.size
+        override fun onBindViewHolder(h: VH, i: Int) {
+            val c = data[i]
+            h.title.text = if (c.petName.isBlank()) c.ownerName else "${c.ownerName}  •  ${c.petName}"
+            h.sub.text = "نوبت ${c.nextVisit}  •  ${c.phone}"
+            h.itemView.setOnClickListener { onClick(c.id) }
+        }
     }
 }

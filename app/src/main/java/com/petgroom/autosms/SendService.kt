@@ -13,8 +13,7 @@ import kotlin.concurrent.thread
 
 class SendService : Service() {
 
-    @Volatile
-    private var running = false
+    @Volatile private var running = false
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -32,7 +31,7 @@ class SendService : Service() {
                 val types = intent.getStringArrayListExtra("types") ?: arrayListOf()
                 val body = intent.getStringExtra("body") ?: ""
                 val delay = intent.getLongExtra("delay", 4000L)
-                startForeground(1, buildNotif("در حال ارسال ۰ از ${phones.size}"))
+                startForeground(1, notif("در حال ارسال ۰ از ${phones.size}"))
                 running = true
                 thread(start = true, name = "sms-send") {
                     sendAll(phones, names, pets, types, body, delay)
@@ -40,15 +39,6 @@ class SendService : Service() {
             }
         }
         return START_NOT_STICKY
-    }
-
-    private fun smsManager(): SmsManager {
-        return if (Build.VERSION.SDK_INT >= 31) {
-            getSystemService(SmsManager::class.java) ?: @Suppress("DEPRECATION") SmsManager.getDefault()
-        } else {
-            @Suppress("DEPRECATION")
-            SmsManager.getDefault()
-        }
     }
 
     private fun sendAll(
@@ -59,7 +49,12 @@ class SendService : Service() {
         body: String,
         delay: Long
     ) {
-        val sms = smsManager()
+        val sms = if (Build.VERSION.SDK_INT >= 31)
+            getSystemService(SmsManager::class.java)
+        else
+            @Suppress("DEPRECATION")
+            SmsManager.getDefault()
+
         var ok = 0
         var fail = 0
         for (i in phones.indices) {
@@ -73,30 +68,21 @@ class SendService : Service() {
                 .replace("{type}", types.getOrElse(i) { "" })
             try {
                 val parts = sms.divideMessage(text)
-                if (parts.size <= 1) {
-                    sms.sendTextMessage(phones[i], null, text, null, null)
-                } else {
-                    sms.sendMultipartTextMessage(phones[i], null, parts, null, null)
-                }
+                if (parts.size == 1) sms.sendTextMessage(phones[i], null, text, null, null)
+                else sms.sendMultipartTextMessage(phones[i], null, parts, null, null)
                 ok++
             } catch (_: Exception) {
                 fail++
             }
-            push("ارسال شد $ok از ${phones.size}" + if (fail > 0) " — ناموفق $fail" else "")
-            if (i < phones.lastIndex && running) {
-                try {
-                    Thread.sleep(delay)
-                } catch (_: InterruptedException) {
-                    break
-                }
-            }
+            notify("ارسال شد $ok از ${phones.size}" + if (fail > 0) " — ناموفق $fail" else "")
+            if (i < phones.lastIndex && running) Thread.sleep(delay)
         }
-        push("تمام. موفق $ok  ناموفق $fail")
+        notify("تمام. موفق $ok  ناموفق $fail")
         running = false
         stopSelf()
     }
 
-    private fun buildNotif(text: String): android.app.Notification {
+    private fun notif(text: String) = run {
         val nm = getSystemService(NotificationManager::class.java)
         if (Build.VERSION.SDK_INT >= 26) {
             nm.createNotificationChannel(
@@ -104,12 +90,11 @@ class SendService : Service() {
             )
         }
         val stop = PendingIntent.getService(
-            this,
-            2,
+            this, 2,
             Intent(this, SendService::class.java).setAction(STOP),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
-        return NotificationCompat.Builder(this, CH)
+        NotificationCompat.Builder(this, CH)
             .setContentTitle("پت‌گروم")
             .setContentText(text)
             .setSmallIcon(android.R.drawable.ic_dialog_email)
@@ -118,8 +103,8 @@ class SendService : Service() {
             .build()
     }
 
-    private fun push(text: String) {
-        getSystemService(NotificationManager::class.java).notify(1, buildNotif(text))
+    private fun notify(text: String) {
+        getSystemService(NotificationManager::class.java).notify(1, notif(text))
     }
 
     companion object {

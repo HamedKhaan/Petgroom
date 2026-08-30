@@ -1,33 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="12dp"
-    android:layoutDirection="rtl">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="مشتریان"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/hint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="8dp" />
-
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="افزودن دستی" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"
+    android:background="@color/pg_bg" android:padding="18dp" android:layoutDirection="rtl">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="مشتریان" android:textColor="@color/pg_text" android:textSize="25sp" android:textStyle="bold"/>
+    <TextView android:id="@+id/hint" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:textColor="@color/pg_muted" android:textSize="13sp"/>
+    <EditText android:id="@+id/search" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="14dp"
+        android:background="@drawable/bg_search" android:hint="جست‌وجوی نام، شماره یا نام پت" android:paddingStart="14dp" android:paddingEnd="14dp" android:singleLine="true"
+        android:inputType="text" android:textColor="@color/pg_text" android:textColorHint="@color/pg_muted"/>
+    <Button android:id="@+id/btnAdd" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="10dp"
+        android:background="@drawable/bg_primary" android:textColor="@android:color/white" android:text="＋  افزودن مشتری جدید" android:textSize="15sp"/>
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/list" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:layout_marginTop="12dp"/>
 </LinearLayout>

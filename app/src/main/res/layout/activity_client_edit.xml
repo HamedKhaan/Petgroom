@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:layoutDirection="rtl">
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/pg_bg"
+    android:fillViewport="true" android:layoutDirection="rtl">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="18dp">
+        <TextView android:id="@+id/screenTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="پرونده مشتری" android:textColor="@color/pg_text" android:textSize="25sp" android:textStyle="bold"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="اطلاعات پت و صاحب آن را ثبت کنید" android:textColor="@color/pg_muted" android:textSize="13sp" android:layout_marginTop="3dp" android:layout_marginBottom="16dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="اطلاعات اصلی" android:textColor="@color/pg_primary" android:textSize="15sp" android:textStyle="bold" android:paddingBottom="7dp"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp" android:background="@drawable/bg_card">
+            <EditText android:id="@+id/name" android:layout_width="match_parent" android:layout_height="52dp" android:hint="نام صاحب" android:singleLine="true" android:inputType="textPersonName"/>
+            <EditText android:id="@+id/phone" android:layout_width="match_parent" android:layout_height="52dp" android:hint="شماره موبایل" android:singleLine="true" android:inputType="phone"/>
+            <EditText android:id="@+id/pet" android:layout_width="match_parent" android:layout_height="52dp" android:hint="نام پت" android:singleLine="true"/>
+            <EditText android:id="@+id/type" android:layout_width="match_parent" android:layout_height="52dp" android:hint="نوع پت؛ سگ، گربه..." android:singleLine="true" android:text="سگ"/>
+        </LinearLayout>
 
-        <EditText android:id="@+id/name" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="نام صاحب" />
-        <EditText android:id="@+id/phone" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="موبایل" android:inputType="phone" />
-        <EditText android:id="@+id/pet" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="نام پت" />
-        <EditText android:id="@+id/type" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="نوع (سگ/گربه/خرگوش)" android:text="سگ" />
-        <EditText android:id="@+id/next" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="نوبت بعدی (مثلا 2026-09-20)" />
-        <EditText android:id="@+id/cycle" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="بازه روز" android:inputType="number" android:text="30" />
-        <EditText android:id="@+id/temp" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="خلق‌وخو / هشدار" />
-        <EditText android:id="@+id/debt" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="بدهی" android:inputType="number" android:text="0" />
-        <EditText android:id="@+id/notes" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="یادداشت" android:minLines="2" />
-        <CheckBox android:id="@+id/muted" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="پیامک برای این شماره نرود" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="نوبت و پیگیری" android:textColor="@color/pg_primary" android:textSize="15sp" android:textStyle="bold" android:layout_marginTop="18dp" android:paddingBottom="7dp"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp" android:background="@drawable/bg_card">
+            <EditText android:id="@+id/next" android:layout_width="match_parent" android:layout_height="52dp" android:hint="نوبت بعدی؛ مثال 2026-09-20" android:singleLine="true"/>
+            <EditText android:id="@+id/cycle" android:layout_width="match_parent" android:layout_height="52dp" android:hint="فاصله تکرار به روز" android:inputType="number" android:text="30" android:singleLine="true"/>
+            <EditText android:id="@+id/temp" android:layout_width="match_parent" android:layout_height="52dp" android:hint="خلق‌وخو / هشدار مهم" android:singleLine="true"/>
+            <EditText android:id="@+id/debt" android:layout_width="match_parent" android:layout_height="52dp" android:hint="بدهی به تومان" android:inputType="number" android:text="0" android:singleLine="true"/>
+        </LinearLayout>
 
-        <Button android:id="@+id/save" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ذخیره" />
-        <Button android:id="@+id/done" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="کار تمام شد (نوبت بعد جلو برود)" />
-        <Button android:id="@+id/delete" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="حذف" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="یادداشت" android:textColor="@color/pg_primary" android:textSize="15sp" android:textStyle="bold" android:layout_marginTop="18dp" android:paddingBottom="7dp"/>
+        <EditText android:id="@+id/notes" android:layout_width="match_parent" android:layout_height="100dp" android:gravity="top|right" android:hint="سلیقه، حساسیت، خدمات انجام‌شده و..." android:background="@drawable/bg_card" android:padding="13dp"/>
+
+        <CheckBox android:id="@+id/muted" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="برای این مشتری پیامک ارسال نشود" android:textColor="@color/pg_text"/>
+        <Button android:id="@+id/save" android:layout_width="match_parent" android:layout_height="55dp" android:layout_marginTop="8dp" android:background="@drawable/bg_primary" android:text="ذخیره پرونده" android:textColor="@android:color/white" android:textSize="15sp"/>
+        <Button android:id="@+id/done" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="9dp" android:text="✓  کار تمام شد؛ نوبت بعد محاسبه شود"/>
+        <Button android:id="@+id/delete" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="4dp" android:text="حذف پرونده" android:textColor="@color/pg_danger"/>
     </LinearLayout>
 </ScrollView>

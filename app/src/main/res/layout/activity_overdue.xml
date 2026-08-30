@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"
+    android:background="@color/pg_bg" android:padding="18dp" android:layoutDirection="rtl">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="موعدهای گذشته" android:textColor="@color/pg_text" android:textSize="25sp" android:textStyle="bold"/>
+    <TextView android:id="@+id/hint" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:textColor="@color/pg_muted"/>
+    <TextView android:id="@+id/empty" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone" android:layout_marginTop="22dp" android:padding="18dp" android:background="@drawable/bg_card" android:text="✓  عالیه! فعلاً موعد گذشته‌ای ندارید." android:textColor="@color/pg_accent" android:textSize="14sp"/>
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/list" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:layout_marginTop="14dp"/>
+</LinearLayout>

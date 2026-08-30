@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:padding="16dp" android:layoutDirection="rtl">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="ارسال پیامک از سیم‌کارت" android:textStyle="bold" android:textSize="18sp" />
-        <TextView android:id="@+id/info" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingBottom="8dp" />
-        <CheckBox android:id="@+id/onlyOverdue" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="فقط موعد گذشته‌ها" />
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="قالب" />
-        <Spinner android:id="@+id/template" android:layout_width="match_parent" android:layout_height="wrap_content" />
-        <EditText android:id="@+id/body" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:minLines="5" android:gravity="top|right" android:hint="{name} {pet}" />
-        <EditText android:id="@+id/delay" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:inputType="number" android:text="4" android:hint="فاصله ثانیه" />
-        <Button android:id="@+id/btnSend" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="شروع ارسال" />
-        <Button android:id="@+id/btnStop" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="توقف" />
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/pg_bg"
+    android:fillViewport="true" android:layoutDirection="rtl">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="18dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ارسال پیامک" android:textColor="@color/pg_text" android:textSize="25sp" android:textStyle="bold"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ارسال مستقیم از سیم‌کارت؛ بدون اینترنت" android:textColor="@color/pg_muted" android:textSize="13sp" android:layout_marginTop="3dp"/>
+        <TextView android:id="@+id/info" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:padding="14dp" android:background="@drawable/bg_soft" android:textColor="@color/pg_text" android:textSize="13sp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="گیرنده‌ها" android:textColor="@color/pg_primary" android:textStyle="bold" android:textSize="15sp" android:layout_marginTop="20dp"/>
+        <CheckBox android:id="@+id/onlyOverdue" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="فقط مشتری‌های دارای موعد گذشته" android:textColor="@color/pg_text"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="پیام" android:textColor="@color/pg_primary" android:textStyle="bold" android:textSize="15sp" android:layout_marginTop="10dp"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="قالب پیام" android:textColor="@color/pg_muted" android:textSize="12sp" android:layout_marginTop="6dp"/>
+        <Spinner android:id="@+id/template" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/bg_search"/>
+        <EditText android:id="@+id/body" android:layout_width="match_parent" android:layout_height="135dp" android:layout_marginTop="9dp"
+            android:gravity="top|right" android:padding="13dp" android:background="@drawable/bg_card" android:hint="{name} و {pet} برای جایگذاری خودکار" android:textColor="@color/pg_text" android:inputType="textMultiLine"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="فاصله بین پیام‌ها (ثانیه)" android:textColor="@color/pg_muted" android:textSize="12sp" android:layout_marginTop="12dp"/>
+        <EditText android:id="@+id/delay" android:layout_width="match_parent" android:layout_height="50dp" android:inputType="number" android:text="4" android:singleLine="true" android:background="@drawable/bg_search" android:paddingStart="13dp" android:paddingEnd="13dp"/>
+
+        <Button android:id="@+id/btnSend" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="16dp" android:background="@drawable/bg_primary" android:textColor="@android:color/white" android:text="▶  شروع ارسال"/>
+        <Button android:id="@+id/btnStop" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="8dp" android:text="■  توقف ارسال" android:textColor="@color/pg_danger"/>
     </LinearLayout>
 </ScrollView>

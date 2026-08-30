@@ -5,7 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DbHelper(ctx: Context) : SQLiteOpenHelper(ctx, "petgroom_offline.db", null, 1) {
+class DbHelper(ctx: Context) : SQLiteOpenHelper(ctx, "petgroom_offline.db", null, 2) {
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
@@ -42,14 +42,18 @@ class DbHelper(ctx: Context) : SQLiteOpenHelper(ctx, "petgroom_offline.db", null
         db.execSQL(
             """
             INSERT INTO templates(name,body) VALUES
-            ('یادآوری نوبت','سلام {name} عزیز\nنوبت اصلاح {pet} نزدیک است. برای هماهنگی همین پیام را جواب بدهید.\nسالن گرومینگ'),
+            ('پیام پایه','سلام {name} عزیز\nنوبت اصلاح {pet} نزدیک است. برای هماهنگی همین پیام را جواب بدهید.\nسالن گرومینگ'),
             ('کار تمام','سلام {name}\nکار {pet} تمام شد و آماده تحویل است.'),
             ('موعد گذشته','سلام {name}\nاز آخرین اصلاح {pet} مدتی گذشته. اگر نوبت می‌خواهید پیام بدهید.')
             """.trimIndent()
         )
     }
 
-    override fun onUpgrade(db: SQLiteDatabase, old: Int, new: Int) {}
+    override fun onUpgrade(db: SQLiteDatabase, old: Int, new: Int) {
+        if (old < 2) {
+            db.execSQL("UPDATE templates SET name='پیام پایه' WHERE id=1")
+        }
+    }
 
     data class Client(
         val id: Long = 0,
@@ -157,6 +161,22 @@ class DbHelper(ctx: Context) : SQLiteOpenHelper(ctx, "petgroom_offline.db", null
             if (c.moveToFirst()) return c.getString(0) ?: ""
         }
         return ""
+    }
+
+    fun saveTemplate(id: Long, name: String, body: String): Long {
+        val v = ContentValues().apply {
+            put("name", name)
+            put("body", body)
+        }
+        return if (id == 0L) writableDatabase.insert("templates", null, v)
+        else {
+            writableDatabase.update("templates", v, "id=?", arrayOf(id.toString()))
+            id
+        }
+    }
+
+    fun deleteTemplate(id: Long) {
+        writableDatabase.delete("templates", "id=?", arrayOf(id.toString()))
     }
 
     private fun readClient(c: android.database.Cursor) = Client(
