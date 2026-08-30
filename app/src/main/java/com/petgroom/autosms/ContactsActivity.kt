@@ -48,7 +48,7 @@ class ContactsActivity : AppCompatActivity() {
         adapter = Adapter(rows) { refreshCount() }
         findViewById<RecyclerView>(R.id.list).apply {
             layoutManager = LinearLayoutManager(this@ContactsActivity)
-            adapter = laura.c@example.net
+            adapter = this@ContactsActivity.adapter
         }
         findViewById<Button>(R.id.btnAll).setOnClickListener {
             rows.forEach { it.checked = true }; adapter.notifyDataSetChanged(); refreshCount()
