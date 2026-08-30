@@ -25,7 +25,7 @@ class ClientsActivity : AppCompatActivity() {
         }
         findViewById<RecyclerView>(R.id.list).apply {
             layoutManager = LinearLayoutManager(this@ClientsActivity)
-            adapter = maria.s@example.com
+            adapter = this@ClientsActivity.adapter
         }
         findViewById<Button>(R.id.btnAdd).setOnClickListener {
             startActivity(Intent(this, ClientEditActivity::class.java))
